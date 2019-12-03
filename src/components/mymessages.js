@@ -6,7 +6,6 @@ class MyMessages {
     this.myMsgsBtn.type = 'submit';
     this.myMsgsBtn.id = 'btn-list-msg';
     this.myMsgsBtn.value = 'List messages';
-    this.myMsgsBtn.addEventListener('click', this.outputMessages);
 
     this.node.appendChild(this.myMsgsBtn);
 
