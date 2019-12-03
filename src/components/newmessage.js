@@ -1,6 +1,7 @@
 class NewMessage {
     constructor() {
         this.node = document.createElement('section');
+        this.node.className = 'msg-section';
 
         this.message = document.createElement('textarea');
         this.message.id = 'txt-title';

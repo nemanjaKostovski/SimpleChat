@@ -1,7 +1,7 @@
 import { Username } from "../components/login";
 import { Messages } from "../components/messages";
 import { NewMessage } from "../components/newmessage";
-import {addMessage, addUser, singleUserMessages} from '../utilities/service'
+import { addMessage, addUser, singleUserMessages } from '../utilities/service'
 import { MyMessages } from "../components/mymessages";
 
 class Main {
@@ -25,25 +25,37 @@ class Main {
             username1 = username.username.value;
             addUser(username1).then(data => {
                 data.messages.forEach(element => {
-                    let z = document.createElement('p');
-                    let y = element.username;
-                    let x = element.message;
-                    let j =  new Date(element.timestamp).toLocaleTimeString('sr-Cyrl',{hour12:true});
-                    z.textContent = `${y}: ${x} ${j}`;
-                    this.messages.node.appendChild(z);
+                    let paragraph = document.createElement('p');
+                    let user = element.username;
+                    let msg = element.message;
+                    let time = new Date(element.timestamp).toLocaleTimeString('sr-Cyrl', { hour12: true });
+                    paragraph.textContent = `${user}: ${msg} ${time}`;
+                    this.messages.node.appendChild(paragraph);
                 });
             });
         })
-
-        //Show messages
-        // singleUserMessages()
-
-        //Save message
-        newMessage.selectMsgOnClick( () => {
-            let text = newMessage.title;
-            addMessage(username1, text).then(data=>{console.log(data)}); 
+// `<h3>${user}</h3>: <p>${msg}</p> <span>${time}</span>`
+        //Show messages for one user
+        username.selectBtnOnClick(() => {
+            myMessages = username.username.value;
+            console.log(myMessages)
+            singleUserMessages(myMessages).then(data => {
+                data.messages.forEach(element => {
+                    let div = document.createElement('div');
+                    let user = element.username;
+                    let msg = element.message;
+                    let time = new Date(element.timestamp).toLocaleTimeString('sr-Cyrl', { hour12: true });
+                    div.textContent = `${user}: ${msg} ${time}`;
+                    this.messages.node.appendChild(div);
+                });
+            });
         });
-        
+        //Save message
+        newMessage.selectMsgOnClick(() => {
+            let text = newMessage.title;
+            addMessage(username1, text).then(data => { console.log(data) });
+        });
+
     }
     getNode() {
         return this.node;

@@ -13,7 +13,6 @@ class Username {
 
         this.btnAdd = document.createElement('input');
         this.btnAdd.type = 'submit';
-        this.btnAdd.id = 'btn-add';
         this.btnAdd.value = 'Add Username'
 
         this.form = document.createElement('section');

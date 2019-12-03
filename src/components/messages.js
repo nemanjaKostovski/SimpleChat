@@ -3,6 +3,7 @@ import { getAllMessages } from "../utilities/service";
 class Messages {
     constructor() {
         this.node = document.createElement('div');
+        this.node.className = 'messages';
         this.posts = []
         this.handle = setInterval(() => this.getMessages(), 10000);
         this.getMessages();
